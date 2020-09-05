@@ -2,12 +2,10 @@
 'use strict';
 
 const express = require('express');
+const config = require('./config');
 
 const app = express();
 
-const config = {
-    PORT: 9000
-};
 
 app.use(express.json());
 

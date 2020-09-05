@@ -4,6 +4,9 @@
   "description": "An RESTful Implementation of Parking Lot System",
   "main": "src/app.js",
   "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js",
+    "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Vijay Soni (vs4vijay@gmail.com)",
