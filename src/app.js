@@ -5,6 +5,7 @@ const express = require('express');
 const logger = require('pino')();
 
 const config = require('./config');
+const { HealthCheckController } = require('./controllers');
 
 
 const app = express();
@@ -18,6 +19,8 @@ app.get('/', (req, res) => {
     message: 'Parking Lot System is Running',
   });
 });
+
+app.get(`${config['BASE_PATH']}/healthz`, HealthCheckController.healthCheck);
 
 // Handle 404 Routes
 app.get('*', (req, res) => {
