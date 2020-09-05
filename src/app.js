@@ -30,3 +30,7 @@ if(require.main == module) {
         console.log(`Service has started on port ${config['PORT']}`);
     })
 }
+
+process.on('SIGINT', function() {
+    process.exit();
+});
