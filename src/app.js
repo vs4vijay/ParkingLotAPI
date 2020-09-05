@@ -26,8 +26,19 @@ app.get('*', (req, res) => {
   });
 });
 
+// Error Handler
+app.use(function(error, req, res, next) {
+  logger.error(error.stack, error.message);
+
+  const response = {
+    success: false,
+    errors: error.stack
+  };
+  res.status(500).json(response);
+});
+
 if (require.main == module) {
-  app.listen(config.PORT, () => {
+  app.listen(config['PORT'], () => {
     logger.info(`Service has started on port ${config['PORT']}`);
   });
 }
@@ -35,3 +46,7 @@ if (require.main == module) {
 process.on('SIGINT', function () {
   process.exit();
 });
+
+module.exports = {
+  app
+};
