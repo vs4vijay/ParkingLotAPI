@@ -1,9 +1,13 @@
 'use strict';
 
 const { HealthCheckController } = require('./health-check.controller');
-const { ParkingLotController } = require('./parking-lot.controller');
+const { ParkingLotsController } = require('./parking-lots.controller');
+const { ParkingSpacesController } = require('./parking-spaces.controller');
+const { UsersController } = require('./users.controller');
 
 module.exports = {
   HealthCheckController,
-  ParkingLotController
+  ParkingLotsController,
+  ParkingSpacesController,
+  UsersController
 };

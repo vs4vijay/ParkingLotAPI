@@ -5,7 +5,8 @@ const express = require('express');
 const logger = require('pino')();
 
 const config = require('./config');
-const { HealthCheckController, ParkingLotController } = require('./controllers');
+const { HealthCheckController, ParkingLotsController, 
+        ParkingSpacesController, UsersController } = require('./controllers');
 
 require('./db');
 
@@ -24,10 +25,13 @@ app.get('/', (req, res) => {
 app.get(`${config['BASE_PATH']}/healthz`, HealthCheckController.healthCheck);
 
 // Route for Initialize Parking Log
-app.post(`${config['BASE_PATH']}/parking_lots/init`, ParkingLotController.initParkingLot);
+app.post(`${config['BASE_PATH']}/parking_lots/init`, ParkingLotsController.initParkingLot);
 
 // Generic Search API for getting all parking spaces and occupied parking spaces
-app.get(`${config['BASE_PATH']}/parking_lots/search`, ParkingLotController.search);
+app.get(`${config['BASE_PATH']}/parking_spaces/search`, ParkingSpacesController.search);
+
+// Generic Search API for getting registred users
+app.get(`${config['BASE_PATH']}/users/search`, UsersController.search);
 
 
 // Handle 404 Routes

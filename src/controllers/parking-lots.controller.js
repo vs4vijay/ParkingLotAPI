@@ -6,12 +6,11 @@ const { ParkingSpaceService } = require('../services');
 
 const parkingSpaceService = new ParkingSpaceService();
 
-class ParkingLotController {
+class ParkingLotsController {
   constructor() {}
 
   // API for create default Parking Lot System
   static async initParkingLot(req, res, next) {
-    logger.info(req.body);
     const parkingLotSystemName = req.body['name'] || 'default';
     const parkingLotSystemCapacity = Number(req.body['capacity'] || 120);
     const parkingLotSystemReservedPercentage = Number(req.body['reserved_percentage'] || 20);
@@ -47,20 +46,8 @@ class ParkingLotController {
     res.status(200).json(response);
   }
 
-  // Generic Search API
-  static async search(req, res, next) {
-    const searchCreteria = {};
-    if(req.query.filter_by && req.query.filter_by == 'occupied') {
-      searchCreteria['vehicle_id'] = { '$exists': true, '$ne': null };
-    }
-
-    const response = {
-      data: await parkingSpaceService.search(searchCreteria),
-    };
-    res.json(response);
-  }
 }
 
 module.exports = {
-  ParkingLotController,
+  ParkingLotsController: ParkingLotsController,
 };
