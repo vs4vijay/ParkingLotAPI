@@ -18,7 +18,6 @@ const parkingSpaceSchema = new Schema({
   },
   vehicle_id: {
     type: Schema.Types.ObjectId,
-    required: true
   }
 }, {
   timestamps: {

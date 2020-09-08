@@ -13,8 +13,8 @@ class ParkingSpaceService {
     return ParkingSpace.findById(id);
   }
 
-  getAll() {
-    return ParkingSpace.find();
+  search(searchCreteria = {}) {
+    return ParkingSpace.find(searchCreteria);
   }
 
   update(id, parkingSpaceBody) {
