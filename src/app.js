@@ -13,6 +13,7 @@ require('./db');
 const app = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 
 // Root Route
@@ -28,10 +29,13 @@ app.get(`${config['BASE_PATH']}/healthz`, HealthCheckController.healthCheck);
 app.post(`${config['BASE_PATH']}/parking_lots/init`, ParkingLotsController.initParkingLot);
 
 // Generic Search API for getting all parking spaces and occupied parking spaces
-app.get(`${config['BASE_PATH']}/parking_spaces/search`, ParkingSpacesController.search);
+app.get(`${config['BASE_PATH']}/parking_spaces`, ParkingSpacesController.search);
 
 // Generic Search API for getting registred users
-app.get(`${config['BASE_PATH']}/users/search`, UsersController.search);
+app.get(`${config['BASE_PATH']}/users`, UsersController.search);
+
+// API to book a parking space
+app.post(`${config['BASE_PATH']}/users/book`, UsersController.book);
 
 
 // Handle 404 Routes

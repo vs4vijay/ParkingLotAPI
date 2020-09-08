@@ -7,7 +7,8 @@ const config = require('./config');
 
 mongoose.connect(config['MONGODB_URI'], {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useFindAndModify: false
 });
 
 const db = mongoose.connection;

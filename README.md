@@ -18,7 +18,7 @@ A Parking Lot system implementation in RESTful API
   - reason_for_reserve
 - Booking
   - booked_at
-  - allotted_parking_space_id
+  - allotted_parking_spot_no
   - vehicle_id
 
 ### Relationships and Embedding
@@ -47,9 +47,25 @@ A Parking Lot system implementation in RESTful API
 
 ---
 
+## Assumptions
+- name of user is unique in a parking lot system
+
+
 ## Features
 - APIs the RESTful in nature, I tried to follow RESTful design as much as possible
 - Accomodated if user has multiple vehicles
+- Have stored metadata like created_at and updated_at
+
+
+## Future Enhancements
+- Can create OpenAPI Specs (or Swagger API Specs)
+- We can have a schedular
+- API result should be paginated
+- Input Validations
+- Can use TypeScript
+- CORS
+- Can use Depedency Injection / IoC
+- Use denormalized form to store vehicles inside user document, but we could have separate vehicles decuments as well
 
 ---
 
@@ -86,13 +102,17 @@ node src/app.js
 
 ---
 
-## Future Enhancements
-- We can have a schedular
-- API result should be paginated
-- Input Validations
-- CORS
-- Can use Depedency Injection / IoC
-- Use denormalized form to store vehicles inside user document, but we could have separate vehicles decuments as well
+## Functionality Testing
+
+```shell
+
+# Get All Registered Users
+curl localhost:9000/api/v1/users
+
+# Create a booking
+curl localhost:9000/api/v1/users/book -H 'Content-Type: application/json' -d '{"name": "Vijay", "registration_no": "123"}'
+
+```
 
 ---
 

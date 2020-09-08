@@ -15,7 +15,8 @@ const userSchema = new Schema({
   reason_for_reserve: {
     type: String
   },
-  vehicles: []
+  vehicles: [],
+  bookings: []
 }, {
   timestamps: {
     createdAt: 'created_at',
