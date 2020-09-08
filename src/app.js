@@ -7,6 +7,7 @@ const logger = require('pino')();
 const config = require('./config');
 const { HealthCheckController } = require('./controllers');
 
+require('./db');
 
 const app = express();
 
