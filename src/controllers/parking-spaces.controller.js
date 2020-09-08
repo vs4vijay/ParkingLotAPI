@@ -13,18 +13,15 @@ class ParkingSpacesController {
   static async search(req, res, next) {
     const searchCreteria = {};
     if(req.query.filter_by && req.query.filter_by == 'occupied') {
-      searchCreteria['vehicle_id'] = { '$exists': true, '$ne': null };
+      searchCreteria['registration_no'] = { '$exists': true, '$ne': null };
     }
 
     const response = {
-      data: await parkingSpaceService.search(searchCreteria),
+      data: await parkingSpaceService.search(searchCreteria)
+                                     .select('-_id parking_lot_name spot_no registration_no is_reserved created_at updated_at'),
     };
     res.json(response);
   }
-
-  // Park API
-
-  // Leave API
 }
 
 module.exports = {

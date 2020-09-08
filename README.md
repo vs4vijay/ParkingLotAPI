@@ -8,7 +8,7 @@ A Parking Lot system implementation in RESTful API
   - parking_lot_name: "default"
   - spot_no
   - is_reserved
-  - vehicle_id
+  - registraion_no
 - Vehicle
   - owner_id
   - registraion_no
@@ -48,7 +48,8 @@ A Parking Lot system implementation in RESTful API
 ---
 
 ## Assumptions
-- name of user is unique in a parking lot system
+- Name of user is unique in a parking lot system
+- Booking is not necessary to park the vehicle, if booking is found then logic works
 
 
 ## Features
@@ -66,6 +67,7 @@ A Parking Lot system implementation in RESTful API
 - CORS
 - Can use Depedency Injection / IoC
 - Use denormalized form to store vehicles inside user document, but we could have separate vehicles decuments as well
+- Can have a generic Exception (`ParkingLotException`) which accomodates all types os failures
 
 ---
 
@@ -106,11 +108,27 @@ node src/app.js
 
 ```shell
 
+# Initialize the Parking Lot System
+curl localhost:9000/api/v1/parking_lots/init -d '{}'
+
+# Get All Parking Spaces
+curl localhost:9000/api/v1/parking_spaces
+
+# Get Occupied Parking Spaces
+curl localhost:9000/api/v1/parking_spaces\?filter_by=occupied 
+
 # Get All Registered Users
 curl localhost:9000/api/v1/users
 
 # Create a booking
 curl localhost:9000/api/v1/users/book -H 'Content-Type: application/json' -d '{"name": "Vijay", "registration_no": "123"}'
+
+# Park a Vehicle
+curl localhost:9000/api/v1/users/park -H 'Content-Type: application/json' -d '{"name": "vijay",  "registration_no": "123"}'
+
+# Unpark a Vehicle
+curl localhost:9000/api/v1/users/unpark -H 'Content-Type: application/json' -d '{"registration_no": "123"}'
+
 
 ```
 

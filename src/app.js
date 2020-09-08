@@ -36,6 +36,8 @@ app.get(`${config['BASE_PATH']}/users`, UsersController.search);
 
 // API to book a parking space
 app.post(`${config['BASE_PATH']}/users/book`, UsersController.book);
+app.post(`${config['BASE_PATH']}/users/park`, UsersController.park);
+app.post(`${config['BASE_PATH']}/users/unpark`, UsersController.unpark);
 
 
 // Handle 404 Routes

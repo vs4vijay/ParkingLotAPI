@@ -16,8 +16,8 @@ const parkingSpaceSchema = new Schema({
     type: Boolean,
     default: false
   },
-  vehicle_id: {
-    type: Schema.Types.ObjectId,
+  registration_no: {
+    type: String,
   }
 }, {
   timestamps: {
