@@ -84,20 +84,7 @@ class UserService {
         }
       }
 
-      if (validBookingExists) {
-        console.log('validBookingExists', validBookingExists);
-        // TODO:
-      }
-
-      const searchCreteria = { registration_no: null, is_reserved: false };
-      const parkingSpace = await ParkingSpace.findOne(searchCreteria);
-      console.log('parkingSpace', parkingSpace);
-
-      // No Parking Space Available
-      if (!parkingSpace) {
-        logger.info('No parking space available in system');
-        throw new Error('ParkingSpaceOverflow');
-      }
+      const parkingSpace = await this.getParkingSpaceAsPerRules(validBookingExists);
 
       logger.info({ spot_no: parkingSpace.spot_no }, 'found parking space');
 
@@ -133,6 +120,27 @@ class UserService {
 
     return validBookingExists;
   }
+
+
+  async getParkingSpaceAsPerRules(validBookingExists) {
+    if (validBookingExists) {
+      console.log('validBookingExists', validBookingExists);
+      // TODO: 
+    }
+
+    const searchCreteria = { registration_no: null, is_reserved: false };
+    const parkingSpace = await ParkingSpace.findOne(searchCreteria);
+    console.log('parkingSpace', parkingSpace);
+
+    // No Parking Space Available
+    if (!parkingSpace) {
+      logger.info('No parking space available in system');
+      throw new Error('ParkingSpaceOverflow');
+    }
+
+    return parkingSpace;
+  }
+
 }
 
 module.exports = UserService;

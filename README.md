@@ -18,8 +18,7 @@ A Parking Lot system implementation in RESTful API
   - reason_for_reserve
 - Booking
   - booked_at
-  - allotted_parking_spot_no
-  - vehicle_id
+  - registraion_no
 
 ### Relationships and Embedding
 
@@ -38,12 +37,12 @@ A Parking Lot system implementation in RESTful API
 
 ## APIs
 
-- /api/v1/parking_lots/init - For Initialing System (creates a parking lot with default name)
-- /api/v1/parking_spaces/search - Generic Search API for getting all and occupied parking spaces
-- /api/v1/users - Returns list of registered Users
-- /api/v1/users/book
-- /api/v1/parking_spaces/park
-- /api/v1/parking_spaces/leave
+/api/v1/parking_lots/init             - For Initialing System (creates a parking lot with default name)
+/api/v1/parking_spaces/search         - Generic Search API for getting all and occupied parking spaces
+/api/v1/users                         - Returns list of registered Users
+/api/v1/users/book                    - Books a Parking Space
+/api/v1/parking_spaces/park           - Park a Vehicle
+/api/v1/parking_spaces/leave          - Unpark a Vehicle
 
 ---
 
@@ -54,20 +53,20 @@ A Parking Lot system implementation in RESTful API
 
 ## Features
 - APIs the RESTful in nature, I tried to follow RESTful design as much as possible
-- Accomodated if user has multiple vehicles
+- Accommodated if user has multiple vehicles
 - Have stored metadata like created_at and updated_at
 
 
 ## Future Enhancements
 - Can create OpenAPI Specs (or Swagger API Specs)
-- We can have a schedular
+- Can use Depedency Injection / IoC
+- We can have a scheduler for cleanup for old bookings
 - API result should be paginated
 - Input Validations
 - Can use TypeScript
-- CORS
-- Can use Depedency Injection / IoC
+- Handle CORS Headers
 - Use denormalized form to store vehicles inside user document, but we could have separate vehicles decuments as well
-- Can have a generic Exception (`ParkingLotException`) which accomodates all types os failures
+- Can have a generic Exception (`ParkingLotException`) which accomodates all types of failures
 
 ---
 
@@ -109,7 +108,7 @@ node src/app.js
 ```shell
 
 # Initialize the Parking Lot System
-curl localhost:9000/api/v1/parking_lots/init -d '{}'
+curl localhost:9000/api/v1/parking_lots/init -X POST
 
 # Get All Parking Spaces
 curl localhost:9000/api/v1/parking_spaces
@@ -124,11 +123,10 @@ curl localhost:9000/api/v1/users
 curl localhost:9000/api/v1/users/book -H 'Content-Type: application/json' -d '{"name": "Vijay", "registration_no": "123"}'
 
 # Park a Vehicle
-curl localhost:9000/api/v1/users/park -H 'Content-Type: application/json' -d '{"name": "vijay",  "registration_no": "123"}'
+curl localhost:9000/api/v1/users/park -H 'Content-Type: application/json' -d '{"name": "Vijay",  "registration_no": "123"}'
 
 # Unpark a Vehicle
 curl localhost:9000/api/v1/users/unpark -H 'Content-Type: application/json' -d '{"registration_no": "123"}'
-
 
 ```
 
