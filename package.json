@@ -12,7 +12,7 @@
   "author": "Vijay Soni (vs4vijay@gmail.com)",
   "license": "MIT",
   "dependencies": {
-    "dotenv": "^8.2.0",
+    "dotenv": "^16.0.0",
     "express": "^4.17.1",
     "mongoose": "^5.10.3",
     "pino": "^6.11.2"
