@@ -1,6 +1,6 @@
 # Parking Lot API
 
-A Parking Lot system implementation in RESTful API
+A RESTful API Implementation for a Parking Lot Management System
 
 ## Data Models
 
