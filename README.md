@@ -37,12 +37,12 @@ A RESTful API Implementation for a Parking Lot Management System
 
 ## APIs
 
-/api/v1/parking_lots/init             - For Initialing System (creates a parking lot with default name)
-/api/v1/parking_spaces/search         - Generic Search API for getting all and occupied parking spaces
-/api/v1/users                         - Returns list of registered Users
-/api/v1/users/book                    - Books a Parking Space
-/api/v1/parking_spaces/park           - Park a Vehicle
-/api/v1/parking_spaces/leave          - Unpark a Vehicle
+- `/api/v1/parking_lots/init`              - For Initialing System (creates a parking lot with default name)
+- `/api/v1/parking_spaces/search`          - Generic Search API for getting all and occupied parking spaces
+- `/api/v1/users`                          - Returns list of registered Users
+- `/api/v1/users/book`                     - Books a Parking Space
+- `/api/v1/parking_spaces/park`            - Park a Vehicle
+- `/api/v1/parking_spaces/leave`           - Unpark a Vehicle
 
 ---
 
